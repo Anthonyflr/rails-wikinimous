@@ -5,6 +5,8 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @content = (Kramdown::Document.new(@article.content).to_html).html_safe
+    @name = (Kramdown::Document.new(@article.name).to_html).html_safe
   end
 
   def edit
